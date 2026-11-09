@@ -1,0 +1,27 @@
+# Godot Engine — Generated Files
+.godot/
+
+# Godot Import Files (auto-generated per asset)
+*.import
+
+# Godot Build Output
+*.translation
+export_presets.cfg
+
+# Windows Export Binaries
+*.exe
+*.pck
+*.zip
+
+# macOS (if ever used)
+*.app
+*.dmg
+
+# OS-generated
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor-specific
+*.swp
+*~

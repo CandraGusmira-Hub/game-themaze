@@ -1,0 +1,153 @@
+[gd_scene load_steps=18 format=3 uid="uid://c_maze_a"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(70, 0.5, 52)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(70, 0.5, 52)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall_long_z"]
+size = Vector3(1, 6, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_long_z"]
+size = Vector3(1, 6, 16)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall_long_x"]
+size = Vector3(20, 6, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_long_x"]
+size = Vector3(20, 6, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall_north"]
+size = Vector3(70, 6, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_north"]
+size = Vector3(70, 6, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall_outer_side"]
+size = Vector3(1, 6, 52)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_outer_side"]
+size = Vector3(1, 6, 52)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pillar_landmark"]
+size = Vector3(2.4, 9, 2.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pillar_landmark"]
+size = Vector3(2.4, 9, 2.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_corridor_block"]
+size = Vector3(12, 6, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_corridor_block"]
+size = Vector3(12, 6, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_alcove_wall"]
+size = Vector3(8, 6, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_alcove_wall"]
+size = Vector3(8, 6, 1)
+
+[node name="MazeSegmentA" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -25)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_floor")
+
+[node name="OuterPerimeter" type="Node3D" parent="."]
+
+[node name="NorthBoundary" type="StaticBody3D" parent="OuterPerimeter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -50.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OuterPerimeter/NorthBoundary"]
+mesh = SubResource("BoxMesh_wall_north")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OuterPerimeter/NorthBoundary"]
+shape = SubResource("BoxShape3D_wall_north")
+
+[node name="WestBoundary" type="StaticBody3D" parent="OuterPerimeter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5, 3, -25)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OuterPerimeter/WestBoundary"]
+mesh = SubResource("BoxMesh_wall_outer_side")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OuterPerimeter/WestBoundary"]
+shape = SubResource("BoxShape3D_wall_outer_side")
+
+[node name="EastBoundary" type="StaticBody3D" parent="OuterPerimeter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.5, 3, -25)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OuterPerimeter/EastBoundary"]
+mesh = SubResource("BoxMesh_wall_outer_side")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OuterPerimeter/EastBoundary"]
+shape = SubResource("BoxShape3D_wall_outer_side")
+
+[node name="EntryCorridor" type="Node3D" parent="."]
+
+[node name="LeftWall" type="StaticBody3D" parent="EntryCorridor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 3, -7.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EntryCorridor/LeftWall"]
+mesh = SubResource("BoxMesh_wall_long_z")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntryCorridor/LeftWall"]
+shape = SubResource("BoxShape3D_wall_long_z")
+
+[node name="RightWall" type="StaticBody3D" parent="EntryCorridor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, -7.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EntryCorridor/RightWall"]
+mesh = SubResource("BoxMesh_wall_long_z")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntryCorridor/RightWall"]
+shape = SubResource("BoxShape3D_wall_long_z")
+
+[node name="LandmarkPlaza" type="Node3D" parent="."]
+
+[node name="CentralMonolith" type="StaticBody3D" parent="LandmarkPlaza"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -24)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LandmarkPlaza/CentralMonolith"]
+mesh = SubResource("BoxMesh_pillar_landmark")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LandmarkPlaza/CentralMonolith"]
+shape = SubResource("BoxShape3D_pillar_landmark")
+
+[node name="WestDeadEndBlock" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 3, -15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WestDeadEndBlock"]
+mesh = SubResource("BoxMesh_corridor_block")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WestDeadEndBlock"]
+shape = SubResource("BoxShape3D_corridor_block")
+
+[node name="WestDeadEndWall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 3, -33)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WestDeadEndWall"]
+mesh = SubResource("BoxMesh_alcove_wall")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WestDeadEndWall"]
+shape = SubResource("BoxShape3D_alcove_wall")
+
+[node name="EastResourceBlock" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 3, -15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EastResourceBlock"]
+mesh = SubResource("BoxMesh_corridor_block")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EastResourceBlock"]
+shape = SubResource("BoxShape3D_corridor_block")
+
+[node name="ResourceNookSpawnMarker" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0.5, -24)
+
+[node name="DeadEndMarker" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0.5, -28)

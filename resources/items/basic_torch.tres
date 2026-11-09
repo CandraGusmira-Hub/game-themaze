@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=2 format=3 uid="uid://item_torch"]
+
+[ext_resource type="Script" path="res://scripts/inventory/item_definition.gd" id="1_item"]
+
+[resource]
+script = ExtResource("1_item")
+item_id = "basic_torch"
+display_name = "Basic Torch"
+description = "A crude torch made from wood and cloth. Illuminates dark maze corridors."
+max_stack = 5
+item_type = "tool"
+is_consumable = false
+health_restore = 0.0
+hunger_restore = 0.0
+thirst_restore = 0.0

@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://c_npc_kaia"]
+
+[ext_resource type="Script" path="res://scripts/interaction/npc_interactable.gd" id="1_npc"]
+[ext_resource type="Resource" path="res://resources/quests/reinforce_shelter.tres" id="2_quest"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kaia"]
+albedo_color = Color(0.24, 0.44, 0.35, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kaia"]
+material = SubResource("StandardMaterial3D_kaia")
+radius = 0.38
+height = 1.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kaia"]
+radius = 0.4
+height = 1.8
+
+[node name="NPC_Kaia" type="StaticBody3D"]
+script = ExtResource("1_npc")
+character_name = "Kaia (The Scout)"
+quest = ExtResource("2_quest")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("CapsuleMesh_kaia")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_kaia")

@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://c_maze_gate"]
+
+[ext_resource type="Script" path="res://scripts/world/maze_gate.gd" id="1_gate"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pillar"]
+size = Vector3(1, 6, 1.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pillar"]
+size = Vector3(1, 6, 1.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_door"]
+size = Vector3(4, 5, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_door"]
+size = Vector3(4, 5, 0.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_top"]
+size = Vector3(6, 1, 1.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_safety"]
+size = Vector3(3.8, 4, 3)
+
+[node name="MazeGate" type="Node3D"]
+script = ExtResource("1_gate")
+
+[node name="LeftPillar" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 3, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LeftPillar"]
+mesh = SubResource("BoxMesh_pillar")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftPillar"]
+shape = SubResource("BoxShape3D_pillar")
+
+[node name="RightPillar" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RightPillar"]
+mesh = SubResource("BoxMesh_pillar")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightPillar"]
+shape = SubResource("BoxShape3D_pillar")
+
+[node name="TopLintel" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TopLintel"]
+mesh = SubResource("BoxMesh_top")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TopLintel"]
+shape = SubResource("BoxMesh_top")
+
+[node name="GateDoor" type="AnimatableBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GateDoor"]
+mesh = SubResource("BoxMesh_door")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GateDoor"]
+shape = SubResource("BoxShape3D_door")
+
+[node name="SafetyArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SafetyArea"]
+shape = SubResource("BoxShape3D_safety")

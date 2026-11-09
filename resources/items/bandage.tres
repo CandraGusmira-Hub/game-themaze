@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=2 format=3 uid="uid://item_bandage"]
+
+[ext_resource type="Script" path="res://scripts/inventory/item_definition.gd" id="1_item"]
+
+[resource]
+script = ExtResource("1_item")
+item_id = "bandage"
+display_name = "Clean Bandage"
+description = "Sterile cloth dressing. Restores 30 Health when applied."
+max_stack = 20
+item_type = "consumable"
+is_consumable = true
+health_restore = 30.0
+hunger_restore = 0.0
+thirst_restore = 0.0

@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3 uid="uid://c_world"]
+
+[ext_resource type="PackedScene" path="res://scenes/environment/glade.tscn" id="1_glade"]
+[ext_resource type="PackedScene" path="res://scenes/environment/maze_gate.tscn" id="2_gate"]
+[ext_resource type="PackedScene" path="res://scenes/environment/maze_segment_a.tscn" id="3_maze"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="4_player"]
+[ext_resource type="PackedScene" path="res://scenes/npcs/npc_kaia.tscn" id="5_kaia"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/stalker.tscn" id="6_stalker"]
+[ext_resource type="PackedScene" path="res://scenes/items/pickup_item_3d.tscn" id="7_item"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="8_hud"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
+sky_top_color = Color(0.384, 0.549, 0.745, 1)
+sky_horizon_color = Color(0.647, 0.706, 0.784, 1)
+ground_bottom_color = Color(0.18, 0.16, 0.14, 1)
+ground_horizon_color = Color(0.55, 0.55, 0.55, 1)
+
+[sub_resource type="Sky" id="Sky_1"]
+sky_material = SubResource("ProceduralSkyMaterial_1")
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 2
+sky = SubResource("Sky_1")
+ambient_light_source = 3
+ambient_light_color = Color(0.4, 0.45, 0.5, 1)
+tonemap_mode = 2
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1")
+
+[node name="Sun" type="DirectionalLight3D" parent="." groups=["sun"]]
+transform = Transform3D(0.866, -0.354, 0.354, 0, 0.707, 0.707, -0.5, -0.612, 0.612, 0, 20, 0)
+light_color = Color(1, 0.96, 0.88, 1)
+light_energy = 1.2
+shadow_enabled = true
+
+[node name="Glade" parent="." instance=ExtResource("1_glade")]
+
+[node name="MazeGate" parent="." instance=ExtResource("2_gate")]
+
+[node name="MazeSegmentA" parent="." instance=ExtResource("3_maze")]
+
+[node name="NPC_Kaia" parent="." instance=ExtResource("5_kaia")]
+transform = Transform3D(0.965, 0, 0.258, 0, 1, 0, -0.258, 0, 0.965, 2.5, 0, 20)
+
+[node name="TheStalker" parent="." instance=ExtResource("6_stalker")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -28)
+
+[node name="Player" parent="." instance=ExtResource("4_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 30)
+
+[node name="Pickups" type="Node3D" parent="."]
+
+[node name="Wood_Maze_1" parent="Pickups" instance=ExtResource("7_item")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+item_id = "wood"
+count = 1
+
+[node name="Wood_Maze_2" parent="Pickups" instance=ExtResource("7_item")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -22)
+item_id = "wood"
+count = 1
+
+[node name="Wood_Maze_3" parent="Pickups" instance=ExtResource("7_item")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -24)
+item_id = "wood"
+count = 2
+
+[node name="Cloth_Maze_1" parent="Pickups" instance=ExtResource("7_item")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -30)
+item_id = "cloth"
+count = 2
+
+[node name="Water_Glade_1" parent="Pickups" instance=ExtResource("7_item")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1.2, 12)
+item_id = "water_flask"
+count = 1
+
+[node name="HUDLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="HUDLayer" instance=ExtResource("8_hud")]

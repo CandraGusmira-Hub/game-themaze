@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=2 format=3 uid="uid://item_water"]
+
+[ext_resource type="Script" path="res://scripts/inventory/item_definition.gd" id="1_item"]
+
+[resource]
+script = ExtResource("1_item")
+item_id = "water_flask"
+display_name = "Fresh Water"
+description = "Clean drinking water drawn from the Glade well. Restores 40 Thirst."
+max_stack = 10
+item_type = "consumable"
+is_consumable = true
+health_restore = 0.0
+hunger_restore = 0.0
+thirst_restore = 40.0

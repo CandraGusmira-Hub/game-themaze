@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="QuestDefinition" load_steps=2 format=3 uid="uid://quest_reinforce"]
+
+[ext_resource type="Script" path="res://scripts/quests/quest_definition.gd" id="1_quest"]
+
+[resource]
+script = ExtResource("1_quest")
+quest_id = "reinforce_shelter"
+title = "Supplies from Beyond"
+description = "Venture past the Maze Gate, collect 3 Wood branches, and return safely to Kaia in the Glade."
+required_item_id = "wood"
+required_count = 3
+reward_item_id = "bandage"
+reward_count = 2
+dialogue_initial = "You're awake! Listen, our perimeter is weakening and the creatures stir at night. I need you to venture past the Gate and bring back 3 Wood branches. Watch your step."
+dialogue_in_progress = "Do you have the 3 Wood branches yet? Keep your eyes open and don't linger in dead ends."
+dialogue_completed = "You survived the Maze and brought the timber! Here, take these clean bandages. You'll need them if you go back out there."

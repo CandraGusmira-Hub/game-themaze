@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c_stalker"]
+
+[ext_resource type="Script" path="res://scripts/ai/stalker_controller.gd" id="1_stalker"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stalker"]
+albedo_color = Color(0.08, 0.08, 0.1, 1)
+roughness = 0.9
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_stalker"]
+material = SubResource("StandardMaterial3D_stalker")
+radius = 0.45
+height = 2.4
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_stalker"]
+radius = 0.5
+height = 2.4
+
+[node name="TheStalker" type="CharacterBody3D"]
+script = ExtResource("1_stalker")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+mesh = SubResource("CapsuleMesh_stalker")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+shape = SubResource("CapsuleShape3D_stalker")
+
+[node name="DetectionRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+target_position = Vector3(0, 0, -12)
+enabled = true

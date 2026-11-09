@@ -1,0 +1,163 @@
+[gd_scene load_steps=15 format=3 uid="uid://c_glade"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ground"]
+size = Vector3(44, 0.5, 42)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
+size = Vector3(44, 0.5, 42)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall_z"]
+size = Vector3(44, 4.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_z"]
+size = Vector3(44, 4.5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall_x"]
+size = Vector3(1, 4.5, 42)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_x"]
+size = Vector3(1, 4.5, 42)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall_front"]
+size = Vector3(19, 4.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_front"]
+size = Vector3(19, 4.5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_shelter"]
+size = Vector3(6, 3.2, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_shelter"]
+size = Vector3(6, 3.2, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_table"]
+size = Vector3(3, 1, 1.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_table"]
+size = Vector3(3, 1, 1.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_crate"]
+size = Vector3(1.4, 1.4, 1.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_crate"]
+size = Vector3(1.4, 1.4, 1.4)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_well"]
+top_radius = 1.3
+bottom_radius = 1.3
+height = 1.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_well"]
+height = 1.2
+radius = 1.3
+
+[node name="Glade" type="Node3D"]
+
+[node name="Terrain" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 20)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain"]
+mesh = SubResource("BoxMesh_ground")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain"]
+shape = SubResource("BoxShape3D_ground")
+
+[node name="Boundaries" type="Node3D" parent="."]
+
+[node name="SouthWall" type="StaticBody3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 41)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Boundaries/SouthWall"]
+mesh = SubResource("BoxMesh_wall_z")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/SouthWall"]
+shape = SubResource("BoxShape3D_wall_z")
+
+[node name="WestWall" type="StaticBody3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 2.25, 20)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Boundaries/WestWall"]
+mesh = SubResource("BoxMesh_wall_x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/WestWall"]
+shape = SubResource("BoxShape3D_wall_x")
+
+[node name="EastWall" type="StaticBody3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 2.25, 20)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Boundaries/EastWall"]
+mesh = SubResource("BoxMesh_wall_x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/EastWall"]
+shape = SubResource("BoxShape3D_wall_x")
+
+[node name="NorthWallLeft" type="StaticBody3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 2.25, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Boundaries/NorthWallLeft"]
+mesh = SubResource("BoxMesh_wall_front")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/NorthWallLeft"]
+shape = SubResource("BoxShape3D_wall_front")
+
+[node name="NorthWallRight" type="StaticBody3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 2.25, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Boundaries/NorthWallRight"]
+mesh = SubResource("BoxMesh_wall_front")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundaries/NorthWallRight"]
+shape = SubResource("BoxShape3D_wall_front")
+
+[node name="SettlementBuildings" type="Node3D" parent="."]
+
+[node name="PlayerShelter" type="StaticBody3D" parent="SettlementBuildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.6, 28)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SettlementBuildings/PlayerShelter"]
+mesh = SubResource("BoxMesh_shelter")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SettlementBuildings/PlayerShelter"]
+shape = SubResource("BoxShape3D_shelter")
+
+[node name="WorkshopTable" type="StaticBody3D" parent="SettlementBuildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.5, 26)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SettlementBuildings/WorkshopTable"]
+mesh = SubResource("BoxMesh_table")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SettlementBuildings/WorkshopTable"]
+shape = SubResource("BoxShape3D_table")
+
+[node name="StorageCrate1" type="StaticBody3D" parent="SettlementBuildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.7, 16)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SettlementBuildings/StorageCrate1"]
+mesh = SubResource("BoxMesh_crate")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SettlementBuildings/StorageCrate1"]
+shape = SubResource("BoxShape3D_crate")
+
+[node name="StorageCrate2" type="StaticBody3D" parent="SettlementBuildings"]
+transform = Transform3D(0.965, 0, 0.258, 0, 1, 0, -0.258, 0, 0.965, 13.5, 0.7, 17.2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SettlementBuildings/StorageCrate2"]
+mesh = SubResource("BoxMesh_crate")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SettlementBuildings/StorageCrate2"]
+shape = SubResource("BoxShape3D_crate")
+
+[node name="WaterWell" type="StaticBody3D" parent="SettlementBuildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0.6, 12)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SettlementBuildings/WaterWell"]
+mesh = SubResource("CylinderMesh_well")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SettlementBuildings/WaterWell"]
+shape = SubResource("CylinderShape3D_well")
+
+[node name="CampfireCenter" type="Marker3D" parent="SettlementBuildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 20)
+
+[node name="SpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 32)
